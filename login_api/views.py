@@ -23,7 +23,7 @@ def check_id(request):
 
   except EmptyResult as e:
     print(e)
-    return Response({"result": {"error": str(e)}}, status = 404)
+    return Response({"result": {"error": str(e)}})
 
   except EmptyQuery as e:
     print(e)
@@ -73,8 +73,8 @@ def check_account(request):
 
   else:
     response = Response({"result": True})
-    response.set_cookie("id", input_id)
-    response.set_cookie("pw", result_pw)
+    response.set_cookie("id", input_id, samesite="Lax")
+    response.set_cookie("pw", result_pw, samesite="Lax")
 
     return response
 
