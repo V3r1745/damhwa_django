@@ -58,7 +58,7 @@ def get_cart(request):
 @api_view(["POST"])
 def add_cart(request):
   try:
-    user_id = request.COOKIES.get("id")
+    user_id = json.loads(request.body).get("id")
 
     if Bucket.objects.filter(user_id = user_id):
       raise SameUserBucketError(user_id)
